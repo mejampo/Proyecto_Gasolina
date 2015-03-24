@@ -135,126 +135,6 @@
        </rect>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>30</y>
-        <width>141</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Shift Box</string>
-      </property>
-      <widget class="QRadioButton" name="rb_Automatico">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>102</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Automatico</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="rb_Mecanico">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>102</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Mecanico</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="frame">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>170</y>
-        <width>161</width>
-        <height>161</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QGroupBox" name="groupBox_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>141</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>TIPO</string>
-       </property>
-       <widget class="QRadioButton" name="rb_Camioneta">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>102</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>CAMIONETA</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="rb_Turismo">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>70</y>
-          <width>102</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>TURISMO</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="rb_Otro">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>110</y>
-          <width>102</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>OTRO</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>240</y>
-        <width>81</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>dd/mm/yyyy</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="Modificar">
      <attribute name="title">
@@ -383,7 +263,7 @@
        <rect>
         <x>30</x>
         <y>10</y>
-        <width>114</width>
+        <width>121</width>
         <height>32</height>
        </rect>
       </property>
@@ -399,19 +279,6 @@
         <width>191</width>
         <height>21</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>320</y>
-        <width>81</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>dd/mm/yyyy</string>
       </property>
      </widget>
     </widget>
@@ -447,7 +314,7 @@
        <rect>
         <x>40</x>
         <y>20</y>
-        <width>114</width>
+        <width>121</width>
         <height>32</height>
        </rect>
       </property>
@@ -608,25 +475,12 @@
        <rect>
         <x>40</x>
         <y>0</y>
-        <width>114</width>
+        <width>121</width>
         <height>32</height>
        </rect>
       </property>
       <property name="text">
        <string>CARGAR LISTA</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_20">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>90</y>
-        <width>81</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>dd/mm/yyyy</string>
       </property>
      </widget>
     </widget>
@@ -662,7 +516,7 @@
        <rect>
         <x>20</x>
         <y>0</y>
-        <width>114</width>
+        <width>121</width>
         <height>32</height>
        </rect>
       </property>
@@ -673,7 +527,7 @@
      <widget class="QLabel" name="label_18">
       <property name="geometry">
        <rect>
-        <x>240</x>
+        <x>150</x>
         <y>400</y>
         <width>81</width>
         <height>16</height>
@@ -686,7 +540,7 @@
      <widget class="QLabel" name="label_19">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>300</x>
         <y>400</y>
         <width>111</width>
         <height>16</height>
@@ -725,9 +579,9 @@
      <widget class="QLineEdit" name="LE_KilometrosRep">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>300</x>
         <y>430</y>
-        <width>151</width>
+        <width>131</width>
         <height>21</height>
        </rect>
       </property>
@@ -738,9 +592,9 @@
      <widget class="QLineEdit" name="LE_LitrosRep">
       <property name="geometry">
        <rect>
-        <x>240</x>
+        <x>150</x>
         <y>430</y>
-        <width>141</width>
+        <width>131</width>
         <height>21</height>
        </rect>
       </property>
@@ -790,7 +644,7 @@
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>240</x>
+        <x>150</x>
         <y>470</y>
         <width>62</width>
         <height>16</height>
@@ -803,14 +657,83 @@
      <widget class="QLineEdit" name="LE_Km_Litro">
       <property name="geometry">
        <rect>
-        <x>240</x>
+        <x>150</x>
         <y>500</y>
-        <width>141</width>
+        <width>121</width>
         <height>21</height>
        </rect>
       </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>470</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Litros/Lempiras</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="LE_Litros_Lemp">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>500</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>400</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Lempiras/Kilometro</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="LE_Lemp_Km">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>430</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>470</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Lempiras/Litro</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="LE_Lemp_Litro">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>500</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
       </property>
      </widget>
     </widget>

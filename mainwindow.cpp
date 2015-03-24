@@ -10,8 +10,6 @@
 #include <vector>
 #include "carro.h"
 #include "gasolina.h"
-#include "automatico.h"
-#include "mecanico.h"
 #include <iostream>
 #include <QMessageBox>
 #include <string>
@@ -27,14 +25,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    Mecanico a("PBT5525", "Toyota","8","2005","Turismo");
-    Automatico b("PDY4015", "Hyunday","12","2012","Camioneta");
-    Mecanico c("PED1275", "Mazda","10","2009","Turismo");
-    Mecanico d("PTF1302", "Dodge","10","2007","Otro");
+    Carro a("PBT5525", "Toyota","8","2005");
+    Carro b("PDY4015", "Hyunday","12","2012");
+    Carro c("PED1275", "Mazda","10","2009");
     carros.append(a);
     carros.append(b);
     carros.append(c);
-    carros.append(d);
 }
 
 MainWindow::~MainWindow()
@@ -49,53 +45,18 @@ void MainWindow::on_B_AgregarCarro_clicked()
     QString marca;
     QString cilindraje;
     QString año;
-    QString tipo;
 
-    if(ui->rb_Automatico->isChecked()){
-        placa=ui->LE_Placa->text();
-        marca=ui->LE_Marca->text();
-        cilindraje=ui->LE_Cilindraje->text();
-        año= ui->LE_Year->text();
-        if(ui->rb_Turismo->isChecked()){
-            tipo="Turismo";
-        }else if(ui->rb_Camioneta->isChecked()){
-            tipo="Camioneta";
-        }else if(ui->rb_Otro->isChecked()){
-            tipo="Otro";
-        }
-
-        Automatico c(placa,marca,cilindraje,año,tipo);
-        carros.append(c);
-
-        QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
-        ui->LE_Placa->setText("");
-        ui->LE_Marca->setText("");
-        ui->LE_Cilindraje->setText("");
-        ui->LE_Year->setText("");
-    }else if(ui->rb_Mecanico->isChecked()){
-        placa=ui->LE_Placa->text();
-        marca=ui->LE_Marca->text();
-        cilindraje=ui->LE_Cilindraje->text();
-        año= ui->LE_Year->text();
-        if(ui->rb_Turismo->isChecked()){
-            tipo="Turismo";
-        }else if(ui->rb_Camioneta->isChecked()){
-            tipo="Camioneta";
-        }else if(ui->rb_Otro->isChecked()){
-            tipo="Otro";
-        }
-
-        Mecanico c(placa,marca,cilindraje,año,tipo);
-        carros.append(c);
-
-        QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
-        ui->LE_Placa->setText("");
-        ui->LE_Marca->setText("");
-        ui->LE_Cilindraje->setText("");
-        ui->LE_Year->setText("");
-    }
-
-
+    placa=ui->LE_Placa->text();
+    marca=ui->LE_Marca->text();
+    cilindraje=ui->LE_Cilindraje->text();
+    año= ui->LE_Year->text();
+    Carro c(placa,marca,cilindraje,año);
+    carros.append(c);
+    QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
+    ui->LE_Placa->setText("");
+    ui->LE_Marca->setText("");
+    ui->LE_Cilindraje->setText("");
+    ui->LE_Year->setText("");
 }
 
 void MainWindow::on_B_AgregarGaso_clicked()
@@ -106,7 +67,6 @@ void MainWindow::on_B_AgregarGaso_clicked()
     double litros;
     double kilometros;
     QString placa;
-
 
     placa = ui->CB_AgregarGaso->currentText();
     fecha= ui->LE_FechaGaso->text();
@@ -221,8 +181,14 @@ void MainWindow::on_B_SelectReporte_clicked()
     ui->LE_KilometrosRep->setText(QString::number(totKilo));
     double km = totKilo/totLitr;
     double lit = totLitr/totKilo;
+    double lempi = totLitr/totLempi;
+    double lpkm = totLempi/totKilo;
+    double lemlit = totLempi/totLitr;
     ui->LE_Km_Litro->setText(QString::number(km));
     ui->LE_Litros_Km->setText(QString::number(lit));
+    ui->LE_Litros_Lemp->setText(QString::number(lempi));
+    ui->LE_Lemp_Km->setText(QString::number(lpkm));
+    ui->LE_Lemp_Litro->setText(QString::number(lemlit));
 
 }
 
@@ -286,12 +252,7 @@ void MainWindow::on_B_SelectGaso_clicked()
 }
 
 
-void MainWindow::on_rb_Mecanico_clicked()
-{
 
-}
 
-void MainWindow::on_rb_Automatico_clicked()
-{
 
-}
+

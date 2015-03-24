@@ -20,8 +20,6 @@ public:
     Carro(QString placa, QString marca, QString cilindraje,QString año);
     Carro(const Carro &r);
 
-
-    virtual QString toString();
     QString getPlaca() const;
     void setPlaca(const QString &value);
     QString getMarca() const;
@@ -30,9 +28,7 @@ public:
     void setCilindraje(const QString &value);
     QString getAño() const;
     void setAño(const QString &value);
-    QString getTipo() const;
-    void setTipo(const QString &value);
-
+    QString toString();
 };
 
 #endif // CARRO_H

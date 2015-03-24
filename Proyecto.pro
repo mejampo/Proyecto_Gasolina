@@ -15,14 +15,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     carro.cpp \
-    gasolina.cpp \
-    mecanico.cpp \
-    automatico.cpp
+    gasolina.cpp
 
 HEADERS  += mainwindow.h \
     carro.h \
-    gasolina.h \
-    mecanico.h \
-    automatico.h
+    gasolina.h
 
 FORMS    += mainwindow.ui
