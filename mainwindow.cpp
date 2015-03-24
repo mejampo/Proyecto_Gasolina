@@ -27,12 +27,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    Carro a("PBT5525", "Toyota","8","2005");
-    Carro b("PDY4015", "Hyunday","12","2012");
-    Carro c("PED1275", "Mazda","10","2009");
+    Mecanico a("PBT5525", "Toyota","8","2005","Turismo");
+    Automatico b("PDY4015", "Hyunday","12","2012","Camioneta");
+    Mecanico c("PED1275", "Mazda","10","2009","Turismo");
+    Mecanico d("PTF1302", "Dodge","10","2007","Otro");
     carros.append(a);
     carros.append(b);
     carros.append(c);
+    carros.append(d);
 }
 
 MainWindow::~MainWindow()
@@ -47,18 +49,53 @@ void MainWindow::on_B_AgregarCarro_clicked()
     QString marca;
     QString cilindraje;
     QString año;
+    QString tipo;
 
-    placa=ui->LE_Placa->text();
-    marca=ui->LE_Marca->text();
-    cilindraje=ui->LE_Cilindraje->text();
-    año= ui->LE_Year->text();
-    Carro c(placa,marca,cilindraje,año);
-    carros.append(c);
-    QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
-    ui->LE_Placa->setText("");
-    ui->LE_Marca->setText("");
-    ui->LE_Cilindraje->setText("");
-    ui->LE_Year->setText("");
+    if(ui->rb_Automatico->isChecked()){
+        placa=ui->LE_Placa->text();
+        marca=ui->LE_Marca->text();
+        cilindraje=ui->LE_Cilindraje->text();
+        año= ui->LE_Year->text();
+        if(ui->rb_Turismo->isChecked()){
+            tipo="Turismo";
+        }else if(ui->rb_Camioneta->isChecked()){
+            tipo="Camioneta";
+        }else if(ui->rb_Otro->isChecked()){
+            tipo="Otro";
+        }
+
+        Automatico c(placa,marca,cilindraje,año,tipo);
+        carros.append(c);
+
+        QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
+        ui->LE_Placa->setText("");
+        ui->LE_Marca->setText("");
+        ui->LE_Cilindraje->setText("");
+        ui->LE_Year->setText("");
+    }else if(ui->rb_Mecanico->isChecked()){
+        placa=ui->LE_Placa->text();
+        marca=ui->LE_Marca->text();
+        cilindraje=ui->LE_Cilindraje->text();
+        año= ui->LE_Year->text();
+        if(ui->rb_Turismo->isChecked()){
+            tipo="Turismo";
+        }else if(ui->rb_Camioneta->isChecked()){
+            tipo="Camioneta";
+        }else if(ui->rb_Otro->isChecked()){
+            tipo="Otro";
+        }
+
+        Mecanico c(placa,marca,cilindraje,año,tipo);
+        carros.append(c);
+
+        QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
+        ui->LE_Placa->setText("");
+        ui->LE_Marca->setText("");
+        ui->LE_Cilindraje->setText("");
+        ui->LE_Year->setText("");
+    }
+
+
 }
 
 void MainWindow::on_B_AgregarGaso_clicked()

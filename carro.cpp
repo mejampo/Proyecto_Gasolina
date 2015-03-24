@@ -5,6 +5,7 @@ Carro::Carro(QString placa, QString marca, QString cilindraje,QString año){
     this -> marca=marca;
     this -> cilindraje=cilindraje;
     this -> año=año;
+
 }
 
 Carro::Carro(const Carro &r){
@@ -17,8 +18,6 @@ Carro::Carro(const Carro &r){
 
 QString Carro::toString()
 {
-    QString q=placa+" , "+marca+" , "+cilindraje+" , "+año;
-    return q;
 
 }
 
@@ -61,5 +60,7 @@ void Carro::setAño(const QString &value)
 {
     año = value;
 }
+
+
 
 
