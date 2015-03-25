@@ -50,6 +50,11 @@ private slots:
 
     void on_B_SelectReporte_M_clicked();
 
+
+    void on_B_Modificar_A_clicked();
+
+    void on_B_Modificar_M_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Agregar">
      <attribute name="title">
@@ -319,8 +319,8 @@
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>280</y>
+        <x>260</x>
+        <y>230</y>
         <width>161</width>
         <height>161</height>
        </rect>
@@ -400,8 +400,8 @@
      <widget class="QPushButton" name="B_SelectModi_M">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>140</y>
+        <x>280</x>
+        <y>100</y>
         <width>121</width>
         <height>32</height>
        </rect>
@@ -459,8 +459,8 @@
      <widget class="QPushButton" name="B_SelectModi_A">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>60</y>
+        <x>280</x>
+        <y>20</y>
         <width>121</width>
         <height>32</height>
        </rect>
@@ -479,11 +479,24 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="B_Modificar">
+     <widget class="QPushButton" name="B_Modificar_A">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>480</y>
+        <x>480</x>
+        <y>60</y>
+        <width>115</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MODIFICAR</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="B_Modificar_M">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>140</y>
         <width>115</width>
         <height>32</height>
        </rect>

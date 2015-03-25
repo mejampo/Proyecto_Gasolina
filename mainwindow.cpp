@@ -39,6 +39,21 @@ MainWindow::MainWindow(QWidget *parent) :
     mecanicos.append(c);
     mecanicos.append(d);
     automaticos.append(e);
+
+    Gasolina f("03/03/2015",400.00,30.25,150.00,"PBT5525");
+    Gasolina r("15/03/2015",500.00,35.00,200.00,"PBT5525");
+    Gasolina w("20/01/2015",1000.00,60.00,500.00,"PED1275");
+    Gasolina q("28/02/2015",700.00,45.7,376.00,"PDG2075");
+    Gasolina p("02/02/2015",100.00,10.00,50.00,"PTF1302");
+    Gasolina v("03/03/2015",400.00,30.25,150.00,"PDY4015");
+
+    gasolina.append(f);
+    gasolina.append(r);
+    gasolina.append(w);
+    gasolina.append(q);
+    gasolina.append(p);
+    gasolina.append(v);
+
 }
 
 MainWindow::~MainWindow()
@@ -438,4 +453,84 @@ void MainWindow::on_B_SelectReporte_M_clicked()
     ui->LE_Lemp_Km_M->setText(QString::number(lpkm));
     ui->LE_Lemp_Litro_M->setText(QString::number(lemlit));
 
+}
+
+
+
+void MainWindow::on_B_Modificar_A_clicked()
+{
+    QString placa;
+    QString marca;
+    QString cilindraje;
+    QString año;
+    QString tipo;
+
+    placa=ui->LE_PlacaModi->text();
+    marca=ui->LE_MarcaModi->text();
+    cilindraje=ui->LE_CilindrajeModi->text();
+    año= ui->LE_YearModi->text();
+    if(ui->rb_TurismoModi->isChecked()){
+        tipo="Turismo";
+    }else if(ui->rb_CamionetaModi->isChecked()){
+        tipo="Camioneta";
+    }else if(ui->rb_OtroModi->isChecked()){
+        tipo="Otro";
+    }
+
+    QString modificando = ui->CB_Modificar_A->currentText();
+    Automatico c(placa,marca,cilindraje,año,tipo);
+    int eli=0;
+    for(int i=0;i<automaticos.length();i++){
+        Automatico carrod = automaticos.at(i);
+        if(modificando==carrod.toString()){
+            eli=i;
+        }
+    }
+    automaticos.replace(eli,c);
+
+    QMessageBox::information(this,tr("Modificar"),tr("Modificado Exitosamente"));
+    ui->LE_PlacaModi->setText("");
+    ui->LE_MarcaModi->setText("");
+    ui->LE_CilindrajeModi->setText("");
+    ui->LE_YearModi->setText("");
+    ui->rb_CamionetaModi->setChecked(1);
+}
+
+void MainWindow::on_B_Modificar_M_clicked()
+{
+    QString placa;
+    QString marca;
+    QString cilindraje;
+    QString año;
+    QString tipo;
+
+    placa=ui->LE_PlacaModi->text();
+    marca=ui->LE_MarcaModi->text();
+    cilindraje=ui->LE_CilindrajeModi->text();
+    año= ui->LE_YearModi->text();
+    if(ui->rb_TurismoModi->isChecked()){
+        tipo="Turismo";
+    }else if(ui->rb_CamionetaModi->isChecked()){
+        tipo="Camioneta";
+    }else if(ui->rb_OtroModi->isChecked()){
+        tipo="Otro";
+    }
+
+    QString modificando = ui->CB_Modificar_M->currentText();
+    Mecanico c(placa,marca,cilindraje,año,tipo);
+    int eli=0;
+    for(int i=0;i<mecanicos.length();i++){
+        Mecanico carrod = mecanicos.at(i);
+        if(modificando==carrod.toString()){
+            eli=i;
+        }
+    }
+    mecanicos.replace(eli,c);
+
+    QMessageBox::information(this,tr("Modificar"),tr("Modificado Exitosamente"));
+    ui->LE_PlacaModi->setText("");
+    ui->LE_MarcaModi->setText("");
+    ui->LE_CilindrajeModi->setText("");
+    ui->LE_YearModi->setText("");
+    ui->rb_CamionetaModi->setChecked(1);
 }
