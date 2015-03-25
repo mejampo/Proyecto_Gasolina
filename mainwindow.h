@@ -38,6 +38,10 @@ private slots:
 
     void on_B_ModificarCarro_clicked();
 
+    void on_rb_Mecanico_clicked();
+
+    void on_rb_Automatico_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

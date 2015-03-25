@@ -10,6 +10,8 @@
 #include <vector>
 #include "carro.h"
 #include "gasolina.h"
+#include "automatico.h"
+#include "mecanico.h"
 #include <iostream>
 #include <QMessageBox>
 #include <string>
@@ -18,6 +20,8 @@
 #include "string.h"
 
 QList<Carro> carros;
+QList<Mecanico> mecanicos;
+QList<Automatico> automaticos;
 QList<Gasolina> gasolina;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -25,12 +29,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    Carro a("PBT5525", "Toyota","8","2005");
-    Carro b("PDY4015", "Hyunday","12","2012");
-    Carro c("PED1275", "Mazda","10","2009");
-    carros.append(a);
-    carros.append(b);
-    carros.append(c);
+    /*Mecanico a("PBT5525", "Toyota","8","2005","Turismo");
+    Automatico b("PDY4015", "Hyunday","12","2012","Camioneta");
+    Mecanico c("PED1275", "Mazda","10","2009","Turismo");
+    Mecanico d("PTF1302", "Dodge","10","2007","Otro");
+    Automatico e("PDG2075", "Dodge","13","2010","Turismo");
+
+    mecanicos.append(a);
+    automaticos.append(b);
+    mecanicos.append(c);
+    mecanicos.append(d);
+    automaticos.append(e);
+    */
 }
 
 MainWindow::~MainWindow()
@@ -45,18 +55,54 @@ void MainWindow::on_B_AgregarCarro_clicked()
     QString marca;
     QString cilindraje;
     QString año;
+    QString tipo;
 
-    placa=ui->LE_Placa->text();
-    marca=ui->LE_Marca->text();
-    cilindraje=ui->LE_Cilindraje->text();
-    año= ui->LE_Year->text();
-    Carro c(placa,marca,cilindraje,año);
-    carros.append(c);
-    QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
-    ui->LE_Placa->setText("");
-    ui->LE_Marca->setText("");
-    ui->LE_Cilindraje->setText("");
-    ui->LE_Year->setText("");
+    if(ui->rb_Automatico->isChecked()){
+        placa=ui->LE_Placa->text();
+        marca=ui->LE_Marca->text();
+        cilindraje=ui->LE_Cilindraje->text();
+        año= ui->LE_Year->text();
+        if(ui->rb_Turismo->isChecked()){
+            tipo="Turismo";
+        }else if(ui->rb_Camioneta->isChecked()){
+            tipo="Camioneta";
+        }else if(ui->rb_Otro->isChecked()){
+            tipo="Otro";
+        }
+
+        Automatico c (tipo,placa,marca,cilindraje,año);
+        automaticos.append(c);
+
+        QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
+        ui->LE_Placa->setText("");
+        ui->LE_Marca->setText("");
+        ui->LE_Cilindraje->setText("");
+        ui->LE_Year->setText("");
+
+    }else if(ui->rb_Mecanico->isChecked()){
+        placa=ui->LE_Placa->text();
+        marca=ui->LE_Marca->text();
+        cilindraje=ui->LE_Cilindraje->text();
+        año= ui->LE_Year->text();
+        if(ui->rb_Turismo->isChecked()){
+            tipo="Turismo";
+        }else if(ui->rb_Camioneta->isChecked()){
+            tipo="Camioneta";
+        }else if(ui->rb_Otro->isChecked()){
+            tipo="Otro";
+        }
+
+        Mecanico c(tipo,placa,marca,cilindraje,año);
+        mecanicos.append(c);
+
+        QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
+        ui->LE_Placa->setText("");
+        ui->LE_Marca->setText("");
+        ui->LE_Cilindraje->setText("");
+        ui->LE_Year->setText("");
+    }
+
+
 }
 
 void MainWindow::on_B_AgregarGaso_clicked()
@@ -67,6 +113,7 @@ void MainWindow::on_B_AgregarGaso_clicked()
     double litros;
     double kilometros;
     QString placa;
+
 
     placa = ui->CB_AgregarGaso->currentText();
     fecha= ui->LE_FechaGaso->text();
@@ -85,7 +132,7 @@ void MainWindow::on_B_AgregarGaso_clicked()
 
 void MainWindow::on_B_Eliminar_clicked()
 {
-    QString eliminando = ui->CB_Eliminar->currentText();
+    /*QString eliminando = ui->CB_Eliminar->currentText();
 
     for(int i=0;i<carros.length();i++){
         Carro carrod = carros.at(i);
@@ -101,6 +148,7 @@ void MainWindow::on_B_Eliminar_clicked()
         }
     }
     QMessageBox::information(this,tr("Modificar"),tr("Eliminado Exitosamente, Refresque la lista"));
+*/
 }
 
 void MainWindow::on_B_CargarEliminar_clicked()
@@ -129,14 +177,14 @@ void MainWindow::on_B_CargarGaso_clicked()
 
 void MainWindow::on_B_CargarReporte_clicked()
 {
-    do{
+    /*do{
         ui->CB_Reporte->removeItem(ui->CB_Reporte->currentIndex());
     }while(ui->CB_Reporte->currentIndex()!=-1);
 
     for(int i=0;i<carros.length();i++){
         Carro carrod = carros.at(i);
         ui->CB_Reporte->addItem(carrod.toString());
-    }
+    }*/
 }
 
 void MainWindow::on_B_CargarModi_clicked()
@@ -153,7 +201,7 @@ void MainWindow::on_B_CargarModi_clicked()
 
 void MainWindow::on_B_SelectReporte_clicked()
 {
-    QString escogido = ui->CB_Reporte->currentText();
+    /*QString escogido = ui->CB_Reporte->currentText();
     QString placa;
     ui->TE_Reportes->clear();
     for(int i=0;i<carros.length();i++){
@@ -181,20 +229,14 @@ void MainWindow::on_B_SelectReporte_clicked()
     ui->LE_KilometrosRep->setText(QString::number(totKilo));
     double km = totKilo/totLitr;
     double lit = totLitr/totKilo;
-    double lempi = totLitr/totLempi;
-    double lpkm = totLempi/totKilo;
-    double lemlit = totLempi/totLitr;
     ui->LE_Km_Litro->setText(QString::number(km));
     ui->LE_Litros_Km->setText(QString::number(lit));
-    ui->LE_Litros_Lemp->setText(QString::number(lempi));
-    ui->LE_Lemp_Km->setText(QString::number(lpkm));
-    ui->LE_Lemp_Litro->setText(QString::number(lemlit));
-
+*/
 }
 
 void MainWindow::on_B_SelectModi_clicked()
 {
-    QString placa;
+    /*QString placa;
     QString marca;
     QString cilindraje;
     QString año;
@@ -213,11 +255,12 @@ void MainWindow::on_B_SelectModi_clicked()
     ui->LE_MarcaModi->setText(marca);
     ui->LE_CilindrajeModi->setText(cilindraje);
     ui->LE_YearModi->setText(año);
+    */
 }
 
 void MainWindow::on_B_ModificarCarro_clicked()
 {
-    QString placa;
+    /*QString placa;
     QString marca;
     QString cilindraje;
     QString año;
@@ -243,6 +286,7 @@ void MainWindow::on_B_ModificarCarro_clicked()
     ui->LE_MarcaModi->setText("");
     ui->LE_CilindrajeModi->setText("");
     ui->LE_YearModi->setText("");
+    */
 }
 
 
@@ -252,7 +296,12 @@ void MainWindow::on_B_SelectGaso_clicked()
 }
 
 
+void MainWindow::on_rb_Mecanico_clicked()
+{
 
+}
 
+void MainWindow::on_rb_Automatico_clicked()
+{
 
-
+}

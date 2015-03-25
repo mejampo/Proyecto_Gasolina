@@ -36,7 +36,8 @@ QString Gasolina::getFecha() const
 
 void Gasolina::setFecha(const QString &value)
 {
-    fecha = value;
+    fecha =value;
+
 }
 
 QString Gasolina::toString()

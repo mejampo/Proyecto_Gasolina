@@ -10,15 +10,18 @@ using namespace std;
 
 class Carro{
 
-    QString placa;
-    QString marca;
-    QString cilindraje;
-    QString año;
+protected:QString placa;
+protected:QString marca;
+protected:QString cilindraje;
+protected:QString año;
 
 public:
 
     Carro(QString placa, QString marca, QString cilindraje,QString año);
     Carro(const Carro &r);
+
+
+    virtual QString toString();
 
     QString getPlaca() const;
     void setPlaca(const QString &value);
@@ -28,7 +31,8 @@ public:
     void setCilindraje(const QString &value);
     QString getAño() const;
     void setAño(const QString &value);
-    QString toString();
+
+
 };
 
 #endif // CARRO_H
