@@ -11,10 +11,11 @@ public:
         Automatico(QString placa, QString marca, QString cilindraje, QString año,QString tipo);
         Automatico(const Automatico &r);
 
-        virtual QString toString();
+        QString toString();
 
         QString getTipo() const;
         void setTipo(const QString &value);
-        };
+};
+
 
 #endif // AUTOMATICO_H

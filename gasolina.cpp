@@ -77,4 +77,3 @@ void Gasolina::setKilometros(double value)
     kilometros = value;
 }
 
-

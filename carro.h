@@ -21,7 +21,7 @@ public:
     Carro(const Carro &r);
 
 
-    virtual QString toString();
+    QString toString();
 
     QString getPlaca() const;
     void setPlaca(const QString &value);

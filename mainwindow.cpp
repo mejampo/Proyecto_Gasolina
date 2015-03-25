@@ -19,7 +19,6 @@
 #include "stdio.h"
 #include "string.h"
 
-QList<Carro> carros;
 QList<Mecanico> mecanicos;
 QList<Automatico> automaticos;
 QList<Gasolina> gasolina;
@@ -29,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    /*Mecanico a("PBT5525", "Toyota","8","2005","Turismo");
+    Mecanico a("PBT5525", "Toyota","8","2005","Turismo");
     Automatico b("PDY4015", "Hyunday","12","2012","Camioneta");
     Mecanico c("PED1275", "Mazda","10","2009","Turismo");
     Mecanico d("PTF1302", "Dodge","10","2007","Otro");
@@ -40,14 +39,12 @@ MainWindow::MainWindow(QWidget *parent) :
     mecanicos.append(c);
     mecanicos.append(d);
     automaticos.append(e);
-    */
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 void MainWindow::on_B_AgregarCarro_clicked()
 {
@@ -70,7 +67,7 @@ void MainWindow::on_B_AgregarCarro_clicked()
             tipo="Otro";
         }
 
-        Automatico c (tipo,placa,marca,cilindraje,año);
+        Automatico c (placa,marca,cilindraje,año,tipo);
         automaticos.append(c);
 
         QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
@@ -92,7 +89,7 @@ void MainWindow::on_B_AgregarCarro_clicked()
             tipo="Otro";
         }
 
-        Mecanico c(tipo,placa,marca,cilindraje,año);
+        Mecanico c(placa,marca,cilindraje,año,tipo);
         mecanicos.append(c);
 
         QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
@@ -101,13 +98,104 @@ void MainWindow::on_B_AgregarCarro_clicked()
         ui->LE_Cilindraje->setText("");
         ui->LE_Year->setText("");
     }
-
-
 }
 
-void MainWindow::on_B_AgregarGaso_clicked()
-{
 
+void MainWindow::on_B_CargarModi_A_clicked()
+{
+    do{
+        ui->CB_Modificar_A->removeItem(ui->CB_Modificar_A->currentIndex());
+    }while(ui->CB_Modificar_A->currentIndex()!=-1);
+
+    for(int i=0;i<automaticos.length();i++){
+        Automatico carrod = automaticos.at(i);
+        ui->CB_Modificar_A->addItem(carrod.toString());
+
+    }
+}
+
+void MainWindow::on_B_CargarModi_M_clicked()
+{
+    do{
+        ui->CB_Modificar_M->removeItem(ui->CB_Modificar_M->currentIndex());
+    }while(ui->CB_Modificar_M->currentIndex()!=-1);
+
+    for(int i=0;i<mecanicos.length();i++){
+        Mecanico carrod = mecanicos.at(i);
+        ui->CB_Modificar_M->addItem(carrod.toString());
+    }
+}
+
+void MainWindow::on_B_SelectModi_A_clicked()
+{
+        QString placa;
+        QString marca;
+        QString cilindraje;
+        QString año;
+        QString tipo;
+
+        QString select = ui->CB_Modificar_A->currentText();
+        for(int i=0;i<automaticos.length();i++){
+            Automatico carrod = automaticos.at(i);
+            if(select==carrod.toString()){
+                placa= automaticos.at(i).getPlaca();
+                marca=automaticos.at(i).getMarca();
+                cilindraje=automaticos.at(i).getCilindraje();
+                año=automaticos.at(i).getAño();
+                tipo=automaticos.at(i).getTipo();
+
+            }
+        }
+        ui->LE_PlacaModi->setText(placa);
+        ui->LE_MarcaModi->setText(marca);
+        ui->LE_CilindrajeModi->setText(cilindraje);
+        ui->LE_YearModi->setText(año);
+
+        if(tipo=="Turismo"){
+            ui->rb_TurismoModi->setChecked(1);
+        }else if(tipo=="Camioneta"){
+            ui->rb_CamionetaModi->setChecked(1);
+        }else if(tipo=="Otro"){
+            ui->rb_OtroModi->setChecked(1);
+        }
+}
+
+void MainWindow::on_B_SelectModi_M_clicked()
+{
+    QString placa;
+    QString marca;
+    QString cilindraje;
+    QString año;
+    QString tipo;
+
+    QString select = ui->CB_Modificar_M->currentText();
+    for(int i=0;i<mecanicos.length();i++){
+        Mecanico carrod = mecanicos.at(i);
+        if(select==carrod.toString()){
+            placa= mecanicos.at(i).getPlaca();
+            marca=mecanicos.at(i).getMarca();
+            cilindraje=mecanicos.at(i).getCilindraje();
+            año=mecanicos.at(i).getAño();
+            tipo=mecanicos.at(i).getTipo();
+
+        }
+    }
+    ui->LE_PlacaModi->setText(placa);
+    ui->LE_MarcaModi->setText(marca);
+    ui->LE_CilindrajeModi->setText(cilindraje);
+    ui->LE_YearModi->setText(año);
+
+    if(tipo=="Turismo"){
+        ui->rb_TurismoModi->setChecked(1);
+    }else if(tipo=="Camioneta"){
+        ui->rb_CamionetaModi->setChecked(1);
+    }else if(tipo=="Otro"){
+        ui->rb_OtroModi->setChecked(1);
+    }
+}
+
+void MainWindow::on_B_AgregarGaso_A_clicked()
+{
     QString fecha;
     double lempiras;
     double litros;
@@ -115,7 +203,7 @@ void MainWindow::on_B_AgregarGaso_clicked()
     QString placa;
 
 
-    placa = ui->CB_AgregarGaso->currentText();
+    placa = ui->CB_AgregarGaso_A->currentText();
     fecha= ui->LE_FechaGaso->text();
     lempiras = ui->SP_Lempiras->value();
     litros= ui->SP_Litros->value();
@@ -130,15 +218,87 @@ void MainWindow::on_B_AgregarGaso_clicked()
     ui->SP_Kilometros->setValue(0);
 }
 
-void MainWindow::on_B_Eliminar_clicked()
+void MainWindow::on_B_AgregarGaso_M_clicked()
 {
-    /*QString eliminando = ui->CB_Eliminar->currentText();
+    QString fecha;
+    double lempiras;
+    double litros;
+    double kilometros;
+    QString placa;
 
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
-        QString placa= carros.at(i).getPlaca();
+
+    placa = ui->CB_AgregarGaso_M->currentText();
+    fecha= ui->LE_FechaGaso->text();
+    lempiras = ui->SP_Lempiras->value();
+    litros= ui->SP_Litros->value();
+    kilometros = ui->SP_Kilometros->value();
+    Gasolina g(fecha,lempiras,litros,kilometros,placa);
+    gasolina.append(g);
+    QMessageBox::information(this,tr("Agregar"),tr("Agregado Exitosamente"));
+
+    ui->LE_FechaGaso->setText("");
+    ui->SP_Lempiras->setValue(0);
+    ui->SP_Litros->setValue(0);
+    ui->SP_Kilometros->setValue(0);
+}
+
+void MainWindow::on_B_CargarGaso_A_clicked()
+{
+    do{
+        ui->CB_AgregarGaso_A->removeItem(ui->CB_AgregarGaso_A->currentIndex());
+    }while(ui->CB_AgregarGaso_A->currentIndex()!=-1);
+
+    for(int i=0;i<automaticos.length();i++){
+        Carro carrod = automaticos.at(i);
+        ui->CB_AgregarGaso_A->addItem(carrod.getPlaca());
+    }
+}
+
+void MainWindow::on_B_CargarGaso_M_clicked()
+{
+    do{
+        ui->CB_AgregarGaso_M->removeItem(ui->CB_AgregarGaso_M->currentIndex());
+    }while(ui->CB_AgregarGaso_M->currentIndex()!=-1);
+
+    for(int i=0;i<mecanicos.length();i++){
+        Carro carrod = mecanicos.at(i);
+        ui->CB_AgregarGaso_M->addItem(carrod.getPlaca());
+    }
+}
+
+void MainWindow::on_B_CargarEli_A_clicked()
+{
+    do{
+        ui->CB_Eliminar_A->removeItem(ui->CB_Eliminar_A->currentIndex());
+    }while(ui->CB_Eliminar_A->currentIndex()!=-1);
+
+    for(int i=0;i<automaticos.length();i++){
+        Automatico carrod = automaticos.at(i);
+        ui->CB_Eliminar_A->addItem(carrod.toString());
+    }
+}
+
+void MainWindow::on_B_CargarEli_M_clicked()
+{
+    do{
+        ui->CB_Eliminar_M->removeItem(ui->CB_Eliminar_M->currentIndex());
+    }while(ui->CB_Eliminar_M->currentIndex()!=-1);
+
+    for(int i=0;i<mecanicos.length();i++){
+        Mecanico carrod = mecanicos.at(i);
+        ui->CB_Eliminar_M->addItem(carrod.toString());
+    }
+}
+
+void MainWindow::on_B_Eli_A_clicked()
+{
+    QString eliminando = ui->CB_Eliminar_A->currentText();
+
+    for(int i=0;i<automaticos.length();i++){
+        Automatico carrod = automaticos.at(i);
+        QString placa= automaticos.at(i).getPlaca();
         if(eliminando==carrod.toString()){
-            carros.removeAt(i);
+            automaticos.removeAt(i);
         }
         for(int i=0;i<gasolina.length();i++){
             Gasolina gas= gasolina.at(i);
@@ -148,64 +308,62 @@ void MainWindow::on_B_Eliminar_clicked()
         }
     }
     QMessageBox::information(this,tr("Modificar"),tr("Eliminado Exitosamente, Refresque la lista"));
-*/
+
 }
 
-void MainWindow::on_B_CargarEliminar_clicked()
+void MainWindow::on_B_Eli_M_clicked()
+{
+    QString eliminando = ui->CB_Eliminar_M->currentText();
+
+    for(int i=0;i<mecanicos.length();i++){
+        Mecanico carrod = mecanicos.at(i);
+        QString placa= mecanicos.at(i).getPlaca();
+        if(eliminando==carrod.toString()){
+            mecanicos.removeAt(i);
+        }
+        for(int i=0;i<gasolina.length();i++){
+            Gasolina gas= gasolina.at(i);
+            if(placa==gasolina.at(i).getPlaca()){
+                gasolina.removeAt(i);
+            }
+        }
+    }
+    QMessageBox::information(this,tr("Modificar"),tr("Eliminado Exitosamente, Refresque la lista"));
+
+}
+
+void MainWindow::on_B_CargarReporte_A_clicked()
 {
     do{
-        ui->CB_Eliminar->removeItem(ui->CB_Eliminar->currentIndex());
-    }while(ui->CB_Eliminar->currentIndex()!=-1);
+        ui->CB_Reporte_A->removeItem(ui->CB_Reporte_A->currentIndex());
+    }while(ui->CB_Reporte_A->currentIndex()!=-1);
 
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
-        ui->CB_Eliminar->addItem(carrod.toString());
+    for(int i=0;i<automaticos.length();i++){
+        Automatico carrod = automaticos.at(i);
+        ui->CB_Reporte_A->addItem(carrod.toString());
     }
 }
 
-void MainWindow::on_B_CargarGaso_clicked()
+void MainWindow::on_B_CargarReporte_M_clicked()
 {
     do{
-        ui->CB_AgregarGaso->removeItem(ui->CB_AgregarGaso->currentIndex());
-    }while(ui->CB_AgregarGaso->currentIndex()!=-1);
+        ui->CB_Reporte_M->removeItem(ui->CB_Reporte_M->currentIndex());
+    }while(ui->CB_Reporte_M->currentIndex()!=-1);
 
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
-        ui->CB_AgregarGaso->addItem(carrod.getPlaca());
+    for(int i=0;i<mecanicos.length();i++){
+        Mecanico carrod = mecanicos.at(i);
+        ui->CB_Reporte_M->addItem(carrod.toString());
     }
+
 }
 
-void MainWindow::on_B_CargarReporte_clicked()
+void MainWindow::on_B_SelectReporte_A_clicked()
 {
-    /*do{
-        ui->CB_Reporte->removeItem(ui->CB_Reporte->currentIndex());
-    }while(ui->CB_Reporte->currentIndex()!=-1);
-
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
-        ui->CB_Reporte->addItem(carrod.toString());
-    }*/
-}
-
-void MainWindow::on_B_CargarModi_clicked()
-{
-    do{
-        ui->CB_Modificar->removeItem(ui->CB_Modificar->currentIndex());
-    }while(ui->CB_Modificar->currentIndex()!=-1);
-
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
-        ui->CB_Modificar->addItem(carrod.toString());
-    }
-}
-
-void MainWindow::on_B_SelectReporte_clicked()
-{
-    /*QString escogido = ui->CB_Reporte->currentText();
+    QString escogido = ui->CB_Reporte_A->currentText();
     QString placa;
-    ui->TE_Reportes->clear();
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
+    ui->TE_Reportes_A->clear();
+    for(int i=0;i<automaticos.length();i++){
+        Automatico carrod = automaticos.at(i);
         if(escogido==carrod.toString()){
             placa=carrod.getPlaca();
         }
@@ -217,91 +375,67 @@ void MainWindow::on_B_SelectReporte_clicked()
     for(int i=0;i<gasolina.length();i++){
         Gasolina gas= gasolina.at(i);
         if(placa==gasolina.at(i).getPlaca()){
-            ui->TE_Reportes->appendPlainText(gas.toString());
+            ui->TE_Reportes_A->appendPlainText(gas.toString());
             totLempi+= gas.getLempiras();
             totLitr+=gas.getLitros();
             totKilo+=gas.getKilometros();
         }
     }
 
-    ui->LE_LempirasRep->setText(QString::number(totLempi));
-    ui->LE_LitrosRep->setText(QString::number(totLitr));
-    ui->LE_KilometrosRep->setText(QString::number(totKilo));
+    ui->LE_LempirasRep_A->setText(QString::number(totLempi));
+    ui->LE_LitrosRep_A->setText(QString::number(totLitr));
+    ui->LE_KilometrosRep_A->setText(QString::number(totKilo));
     double km = totKilo/totLitr;
     double lit = totLitr/totKilo;
-    ui->LE_Km_Litro->setText(QString::number(km));
-    ui->LE_Litros_Km->setText(QString::number(lit));
-*/
+    double lempi = totLitr/totLempi;
+    double lpkm = totLempi/totKilo;
+    double lemlit = totLempi/totLitr;
+    ui->LE_Km_Litro_A->setText(QString::number(km));
+    ui->LE_Litros_Km_A->setText(QString::number(lit));
+    ui->LE_Litros_Lemp_A->setText(QString::number(lempi));
+    ui->LE_Lemp_Km_A->setText(QString::number(lpkm));
+    ui->LE_Lemp_Litro_A->setText(QString::number(lemlit));
+
 }
 
-void MainWindow::on_B_SelectModi_clicked()
+void MainWindow::on_B_SelectReporte_M_clicked()
 {
-    /*QString placa;
-    QString marca;
-    QString cilindraje;
-    QString año;
 
-    QString select = ui->CB_Modificar->currentText();
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
-        if(select==carrod.toString()){
-            placa= carros.at(i).getPlaca();
-            marca=carros.at(i).getMarca();
-            cilindraje=carros.at(i).getCilindraje();
-            año=carros.at(i).getAño();
+    QString escogido = ui->CB_Reporte_M->currentText();
+    QString placa;
+    ui->TE_Reportes_M->clear();
+    for(int i=0;i<mecanicos.length();i++){
+        Mecanico carrod = mecanicos.at(i);
+        if(escogido==carrod.toString()){
+            placa=carrod.getPlaca();
         }
     }
-    ui->LE_PlacaModi->setText(placa);
-    ui->LE_MarcaModi->setText(marca);
-    ui->LE_CilindrajeModi->setText(cilindraje);
-    ui->LE_YearModi->setText(año);
-    */
-}
 
-void MainWindow::on_B_ModificarCarro_clicked()
-{
-    /*QString placa;
-    QString marca;
-    QString cilindraje;
-    QString año;
-
-    placa=ui->LE_Placa->text();
-    marca=ui->LE_Marca->text();
-    cilindraje=ui->LE_Cilindraje->text();
-    año= ui->LE_Year->text();
-
-    QString eliminando = ui->CB_Eliminar->currentText();
-    Carro c(placa,marca,cilindraje,año);
-    int eli=0;
-    for(int i=0;i<carros.length();i++){
-        Carro carrod = carros.at(i);
-        if(eliminando==carrod.toString()){
-            eli=i;
+    double totLempi=0.0;
+    double totLitr=0.0;
+    double totKilo=0.0;
+    for(int i=0;i<gasolina.length();i++){
+        Gasolina gas= gasolina.at(i);
+        if(placa==gasolina.at(i).getPlaca()){
+            ui->TE_Reportes_M->appendPlainText(gas.toString());
+            totLempi+= gas.getLempiras();
+            totLitr+=gas.getLitros();
+            totKilo+=gas.getKilometros();
         }
     }
-    carros.replace(eli,c);
 
-    QMessageBox::information(this,tr("Modificar"),tr("Modificado Exitosamente"));
-    ui->LE_PlacaModi->setText("");
-    ui->LE_MarcaModi->setText("");
-    ui->LE_CilindrajeModi->setText("");
-    ui->LE_YearModi->setText("");
-    */
-}
-
-
-void MainWindow::on_B_SelectGaso_clicked()
-{
-
-}
-
-
-void MainWindow::on_rb_Mecanico_clicked()
-{
-
-}
-
-void MainWindow::on_rb_Automatico_clicked()
-{
+    ui->LE_LempirasRep_M->setText(QString::number(totLempi));
+    ui->LE_LitrosRep_M->setText(QString::number(totLitr));
+    ui->LE_KilometrosRep_M->setText(QString::number(totKilo));
+    double km = totKilo/totLitr;
+    double lit = totLitr/totKilo;
+    double lempi = totLitr/totLempi;
+    double lpkm = totLempi/totKilo;
+    double lemlit = totLempi/totLitr;
+    ui->LE_Km_Litro_M->setText(QString::number(km));
+    ui->LE_Litros_Km_M->setText(QString::number(lit));
+    ui->LE_Litros_Lemp_M->setText(QString::number(lempi));
+    ui->LE_Lemp_Km_M->setText(QString::number(lpkm));
+    ui->LE_Lemp_Litro_M->setText(QString::number(lemlit));
 
 }

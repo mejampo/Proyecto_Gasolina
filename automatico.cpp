@@ -11,6 +11,12 @@ Automatico::Automatico(const Automatico &r):Carro(r){
     this -> tipo= r.getTipo();
 }
 
+QString Automatico::toString()
+{
+    QString q=placa+" , "+marca+" , "+cilindraje+" , "+año+" , "+tipo;
+    return q;
+}
+
 
 
 QString Automatico::getTipo() const
@@ -23,9 +29,3 @@ void Automatico::setTipo(const QString &value)
     tipo = value;
 }
 
-QString Automatico::toString()
-{
-    QString q=placa+" , "+marca+" , "+cilindraje+" , "+año+" , "+tipo;
-    return q;
-
-}

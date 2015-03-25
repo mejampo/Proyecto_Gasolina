@@ -62,7 +62,3 @@ void Carro::setAño(const QString &value)
 {
     año = value;
 }
-
-
-
-
