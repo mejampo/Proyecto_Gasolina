@@ -16,7 +16,7 @@ Carro::Carro(const Carro &r){
 }
 
 
-QString Carro::toString()
+QString Carro::toString() const
 {
     QString q=placa+" , "+marca+" , "+cilindraje+" , "+año;
     return q;

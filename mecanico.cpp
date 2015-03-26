@@ -12,7 +12,7 @@ Mecanico::Mecanico(const Mecanico &r):Carro(r){
     this -> tipo= r.getTipo();
 }
 
-QString Mecanico::toString()
+QString Mecanico::toString() const
 {
     QString q=placa+" , "+marca+" , "+cilindraje+" , "+año+" , "+tipo;
     return q;
