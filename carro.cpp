@@ -23,6 +23,11 @@ QString Carro::toString() const
 
 }
 
+int Carro::cantidadGas()
+{
+
+}
+
 QString Carro::getPlaca() const
 {
     return placa;

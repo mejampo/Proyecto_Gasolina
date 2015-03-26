@@ -17,6 +17,11 @@ QString Automatico::toString() const
     return q;
 }
 
+int Automatico::cantidadGas()
+{
+
+}
+
 
 
 QString Automatico::getTipo() const

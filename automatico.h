@@ -12,6 +12,7 @@ public:
         Automatico(const Automatico &r);
 
         virtual QString toString()const;
+        virtual int cantidadGas();
 
         QString getTipo() const;
         void setTipo(const QString &value);

@@ -18,6 +18,11 @@ QString Mecanico::toString() const
     return q;
 }
 
+int Mecanico::cantidadGas()
+{
+
+}
+
 
 QString Mecanico::getTipo() const
 {

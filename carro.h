@@ -22,6 +22,7 @@ public:
 
 
     virtual QString toString()const;
+    virtual int cantidadGas();
 
     QString getPlaca() const;
     void setPlaca(const QString &value);
