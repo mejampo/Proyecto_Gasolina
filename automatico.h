@@ -7,15 +7,15 @@ class Automatico : public Carro{
 
     QString tipo;
 public:
-        Automatico();
-        Automatico(QString placa, QString marca, QString cilindraje, QString año,QString tipo);
-        Automatico(const Automatico &r);
+    Automatico();
+    Automatico(QString placa, QString marca, QString cilindraje, QString año,QString tipo);
+    Automatico(const Automatico &r);
 
-        virtual QString toString()const;
-        virtual int cantidadGas();
+    virtual QString toString()const;
+    virtual int cantidadGas();
 
-        QString getTipo() const;
-        void setTipo(const QString &value);
+    QString getTipo() const;
+    void setTipo(const QString &value);
 };
 
 

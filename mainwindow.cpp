@@ -143,36 +143,36 @@ void MainWindow::on_B_CargarModi_M_clicked()
 
 void MainWindow::on_B_SelectModi_A_clicked()
 {
-        QString placa;
-        QString marca;
-        QString cilindraje;
-        QString año;
-        QString tipo;
+    QString placa;
+    QString marca;
+    QString cilindraje;
+    QString año;
+    QString tipo;
 
-        QString select = ui->CB_Modificar_A->currentText();
-        for(int i=0;i<automaticos.length();i++){
-            Automatico carrod = automaticos.at(i);
-            if(select==carrod.toString()){
-                placa= automaticos.at(i).getPlaca();
-                marca=automaticos.at(i).getMarca();
-                cilindraje=automaticos.at(i).getCilindraje();
-                año=automaticos.at(i).getAño();
-                tipo=automaticos.at(i).getTipo();
+    QString select = ui->CB_Modificar_A->currentText();
+    for(int i=0;i<automaticos.length();i++){
+        Automatico carrod = automaticos.at(i);
+        if(select==carrod.toString()){
+            placa= automaticos.at(i).getPlaca();
+            marca=automaticos.at(i).getMarca();
+            cilindraje=automaticos.at(i).getCilindraje();
+            año=automaticos.at(i).getAño();
+            tipo=automaticos.at(i).getTipo();
 
-            }
         }
-        ui->LE_PlacaModi->setText(placa);
-        ui->LE_MarcaModi->setText(marca);
-        ui->LE_CilindrajeModi->setText(cilindraje);
-        ui->LE_YearModi->setText(año);
+    }
+    ui->LE_PlacaModi->setText(placa);
+    ui->LE_MarcaModi->setText(marca);
+    ui->LE_CilindrajeModi->setText(cilindraje);
+    ui->LE_YearModi->setText(año);
 
-        if(tipo=="Turismo"){
-            ui->rb_TurismoModi->setChecked(1);
-        }else if(tipo=="Camioneta"){
-            ui->rb_CamionetaModi->setChecked(1);
-        }else if(tipo=="Otro"){
-            ui->rb_OtroModi->setChecked(1);
-        }
+    if(tipo=="Turismo"){
+        ui->rb_TurismoModi->setChecked(1);
+    }else if(tipo=="Camioneta"){
+        ui->rb_CamionetaModi->setChecked(1);
+    }else if(tipo=="Otro"){
+        ui->rb_OtroModi->setChecked(1);
+    }
 }
 
 void MainWindow::on_B_SelectModi_M_clicked()

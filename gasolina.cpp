@@ -42,7 +42,7 @@ void Gasolina::setFecha(const QString &value)
 
 QString Gasolina::toString()
 {
-   // QString lemp = lempiras.toStdString();
+    // QString lemp = lempiras.toStdString();
     QString q= placa+" , "+QString::number(lempiras)+" , "+QString::number(litros)+" , "+QString::number(kilometros)+" , "+fecha;
     return q;
 }
