@@ -426,6 +426,7 @@ void MainWindow::on_B_SelectReporte_M_clicked()
         }
     }
 
+
     double totLempi=0.0;
     double totLitr=0.0;
     double totKilo=0.0;
